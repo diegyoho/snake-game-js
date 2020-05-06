@@ -4,10 +4,10 @@
 Clássico [jogo da cobrinha](https://www.diegomoreira.net.br/snake-game)!
 ## Indíce
 
-- [Sobre](#-sobre)
-- [Tecnologias](#-tecnologias)
-- [Checklist](#-checklist)
-- [Licença](#-licença)
+- [Sobre](#sobre)
+- [Tecnologias](#tecnologias)
+- [Checklist](#checklist)
+- [Licença](#licença)
 
 ### Sobre
 
