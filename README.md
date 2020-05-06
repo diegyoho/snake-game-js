@@ -17,7 +17,7 @@ Implementação em Javascript do clássico [jogo da cobrinha](https://en.wikiped
 
 - A linguagem adotada: Javascript. 
 
-A inspiração para esse pequeno projeto veio depois de assistir a playlist [Primeiro Jogo Multiplayer](https://www.youtube.com/watch?v=0sTfIZvjYJk&list=PLMdYygf53DP5SVQQrkKCVWDS0TwYLVitL) do grande @filipedeschamps!
+A inspiração para esse pequeno projeto veio depois de assistir a playlist [Primeiro Jogo Multiplayer](https://www.youtube.com/watch?v=0sTfIZvjYJk&list=PLMdYygf53DP5SVQQrkKCVWDS0TwYLVitL) do grande [Filipe Deschamps](https://github.com/filipedeschamps)!
 
 ### Tecnologias
 
