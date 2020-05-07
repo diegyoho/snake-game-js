@@ -35,11 +35,12 @@ Snake Game - MVP
 - [x] Mapa de Jogo
 - [x] Cobra com movimentação automática
 - [x] Setas do teclado modificam a direção
+- [x] Espaço para iniciar ou pausar
 - [x] Teletransporte ao sair dos limites do mapa (aparecer no lado opost)
-- [ ] Criação aleatória de comida no mapa
-- [ ] Detecção de Colisão
-  - [ ] Comida: Aumentar comprimento da cobra
-  - [ ] Corpo: fim de jogo
+- [x] Criação aleatória de comida no mapa
+- [x] Detecção de Colisão
+  - [x] Comida: Aumentar comprimento da cobra (Aumenta velocidade também)
+  - [x] Corpo: fim de jogo
 
 #### 2ª versão - Joga fora no lixo!
 
