@@ -114,6 +114,10 @@ class Snake {
 
     die() {
         this.dead = true
+        audio.pause()
+        audio.src = './audios/spaceTrash1.mp3'
+        audio.currentTime = 0
+        audio.play()
     }
 }
 
@@ -156,8 +160,11 @@ objects.push(snake)
 let speed = 250,
     pause = true
 
+const audio = document.querySelector('audio')
+let eatSound = false
 // Move Snake and Check collisions
 function moveAndCollisionSnake() {
+    
     if(snake.dead)
         return
 
@@ -172,6 +179,7 @@ function moveAndCollisionSnake() {
             // objects.splice(objects.indexOf(snake), 1)
             snake.die()
             document.querySelector('#end-game').style.display = 'flex'
+            return
         }
         
         const hasFood = objects.findIndex(obj => obj !== snake && (obj.x === snake.x && obj.y === snake.y))
@@ -181,9 +189,22 @@ function moveAndCollisionSnake() {
             foodCount--
             snake.eat()
             speed--
+            audio.pause()
+            audio.src = './audios/powerUp2.mp3'
+            audio.currentTime = 0
+            audio.play()
+            eatSound = true
         }
-
         waitForMove = false
+
+        if(!eatSound) {
+            audio.pause()
+            audio.src = './audios/tone1.mp3'
+            audio.currentTime = 0
+            audio.play()
+        } else if(audio.currentTime >= audio.duration/3) {
+            eatSound = false
+        }
     }
 
     setTimeout(() => {
