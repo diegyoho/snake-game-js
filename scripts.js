@@ -197,12 +197,7 @@ function moveAndCollisionSnake() {
         }
         waitForMove = false
 
-        if(!eatSound) {
-            audio.pause()
-            audio.src = './audios/tone1.mp3'
-            audio.currentTime = 0
-            audio.play()
-        } else if(audio.currentTime >= audio.duration/3) {
+        if(eatSound && audio.currentTime >= audio.duration/3) {
             eatSound = false
         }
     }
