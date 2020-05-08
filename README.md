@@ -1,7 +1,16 @@
 # Snake Game
 
+<div align="center">
+
 <a href="https://www.diegomoreira.net.br/snake-game">![Preview](/previews/preview-1.gif)</a>
-Clássico [jogo da cobrinha](https://www.diegomoreira.net.br/snake-game)!
+<div>
+  
+  Clássico [jogo da cobrinha](https://www.diegomoreira.net.br/snake-game)!
+
+</div>
+
+</div>
+
 ## Indíce
 
 - [Sobre](#sobre)
@@ -44,7 +53,7 @@ Snake Game - MVP
 - [x] Instruções
 - [x] Pontuação
 - [x] Entradas Mobile (Tap, Swipe)
-- [ ] Sons
+- [x] Sons
 
 #### 2ª versão - Joga fora no lixo!
 
