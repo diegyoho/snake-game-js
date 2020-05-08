@@ -19,7 +19,9 @@ function resizeCanvas() {
     let minDimensionScreen = Math.min(window.innerWidth, window.innerHeight)
 
     if(minDimensionScreen === window.innerHeight)
-        minDimensionScreen *= 0.8
+        minDimensionScreen *= 0.5
+    else
+        minDimensionScreen *= 0.9
 
     screen.width = screen.height = worldSize
 
@@ -107,6 +109,7 @@ class Snake {
         const endTail = new Tail(this.x, this.y, this.tail[this.tail.length-1] || this)
         this.tail.push(endTail)
         this.eating = true
+        document.querySelector('#score').innerText = `00${this.tail.length}`.slice(-3)
     }
 
     die() {
@@ -166,8 +169,9 @@ function moveAndCollisionSnake() {
         const hasTail = snake.tail.findIndex(obj => obj !== snake && (obj.x === snake.x && obj.y === snake.y))
 
         if(hasTail > -1) {
-            objects.splice(objects.indexOf(snake), 1)
+            // objects.splice(objects.indexOf(snake), 1)
             snake.die()
+            document.querySelector('#end-game').style.display = 'flex'
         }
         
         const hasFood = objects.findIndex(obj => obj !== snake && (obj.x === snake.x && obj.y === snake.y))
@@ -184,7 +188,7 @@ function moveAndCollisionSnake() {
 
     setTimeout(() => {
         moveAndCollisionSnake()
-    }, speed)
+    }, Math.max(speed, 75))
 }
 
 setTimeout(() => {
@@ -323,3 +327,8 @@ function isMobile() {
     
         return false
 }
+
+if(isMobile())
+    document.querySelector('#browser').style.display = 'none'
+else
+    document.querySelector('#mobile').style.display = 'none'

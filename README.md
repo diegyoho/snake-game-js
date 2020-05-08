@@ -41,8 +41,9 @@ Snake Game - MVP
 - [x] Detecção de Colisão
   - [x] Comida: Aumentar comprimento da cobra (Aumenta velocidade também)
   - [x] Corpo: fim de jogo
-- [ ] Instruções
-- [ ] Pontuação
+- [x] Instruções
+- [x] Pontuação
+- [x] Entradas Mobile (Tap, Swipe)
 - [ ] Sons
 
 #### 2ª versão - Joga fora no lixo!

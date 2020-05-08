@@ -12,11 +12,30 @@
     ontouchstart="touchStart(event)"
     ontouchend="touchEnd(event)"
 >
-    <canvas
-        id="screen"
-        width="100px"
-        height="100px"
-    ></canvas>
+
+    <h1>Snake Game</h1>
+
+    <div id="browser">
+        <p>Iniciar/Pausar<span>[Espaço]</span></p>
+        <p>Mover<span>[Setas]</span></p>
+    </div>
+    <div id="mobile">
+        <p>Iniciar/Pausar<span>[Tap]</span></p>
+        <p>Mover<span>[Swipe]</span></p>
+    </div>
+    
+    <div id="game">
+        <div id="end-game">
+            <p>VOCÊ PERDEU :(</p>
+            <p>Atualize a página</p>
+            <p>para recomeçar! :)</p>
+        </div>
+        <p id="score">000</p>
+        <canvas
+            id="screen"
+            width="100px"
+            height="100px"
+        ></canvas>
     </div>
 
     <footer>
