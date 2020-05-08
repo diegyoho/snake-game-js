@@ -16,12 +16,17 @@ let foodCount = 0
 function resizeCanvas() {
     setInnerHeight()
     
-    const minDimensionScreen = Math.min(window.innerWidth, window.innerHeight)
+    let minDimensionScreen = Math.min(window.innerWidth, window.innerHeight)
+
+    if(minDimensionScreen === window.innerHeight)
+        minDimensionScreen *= 0.8
 
     screen.width = screen.height = worldSize
 
     screen.style.minWidth = `${ minDimensionScreen }px`
     screen.style.minHeight = `${ minDimensionScreen }px`
+
+    document.documentElement.style.setProperty('--map-width', `${minDimensionScreen * 0.01}px`)
 }
 
 // Clear the canvas
@@ -57,7 +62,7 @@ function renderScreen() {
 }
 
 renderScreen()
-
+// clearScreen()
 
 // Classes of game elements
 class Snake {
@@ -190,21 +195,17 @@ document.addEventListener('keydown', event => {
     const keyPressed = event.key
 
     if(keyPressed === ' ') {
-        pause = !pause
+        pauseGame()
         return
     }
 
     if(pause || waitForMove) return
 
     waitForMove = true
-    if(keyPressed === 'ArrowUp' &&
-        (snake.tail.length === 0 || snake.directionMove !== 'down')) snake.changeDirection('up')
-    else if(keyPressed === 'ArrowRight' &&
-        (snake.tail.length === 0 || snake.directionMove !== 'left')) snake.changeDirection('right')
-    else if(keyPressed === 'ArrowDown' &&
-        (snake.tail.length === 0 || snake.directionMove !== 'up')) snake.changeDirection('down')
-    else if(keyPressed === 'ArrowLeft' &&
-        (snake.tail.length === 0 || snake.directionMove !== 'right')) snake.changeDirection('left')
+    if(keyPressed === 'ArrowUp') moveUp()
+    else if(keyPressed === 'ArrowRight') moveRight()
+    else if(keyPressed === 'ArrowDown') moveDown()
+    else if(keyPressed === 'ArrowLeft') moveLeft()
 })
 
 // Spawn Foods
@@ -219,7 +220,8 @@ setInterval(() => {
     let x = Math.floor(Math.random() * worldSize)
     let y = Math.floor(Math.random() * worldSize)
 
-    while(objects.find(obj => obj.x === x && obj.y === y)) {
+    while(objects.find(obj => obj.x === x && obj.y === y) ||
+          snake.tail.find(obj => obj.x === x && obj.y === y)) {
         x = Math.floor(Math.random() * worldSize)
         y = Math.floor(Math.random() * worldSize)
     }
@@ -227,3 +229,97 @@ setInterval(() => {
     objects.unshift(new Food(x, y))
     foodCount++
 }, 2000)
+
+function pauseGame() {
+    pause = !pause
+}
+
+function moveUp() {
+    if(snake.tail.length === 0 || snake.directionMove !== 'down')
+        snake.changeDirection('up')
+}
+
+function moveRight() {
+    if(snake.tail.length === 0 || snake.directionMove !== 'left')
+        snake.changeDirection('right')
+}
+
+function moveDown() {
+    if(snake.tail.length === 0 || snake.directionMove !== 'up')
+        snake.changeDirection('down')
+}
+
+function moveLeft() {
+    if(snake.tail.length === 0 || snake.directionMove !== 'right')
+        snake.changeDirection('left')
+}
+
+let time,
+    touchDownPos
+
+function getTouch(event) {
+    const x = event.changedTouches[0].clientX
+    const y = event.changedTouches[0].clientY
+    return { x, y }
+}
+
+function clickScreen() {
+    if(!isMobile())
+        return
+
+    pauseGame()
+}
+
+function touchStart(event) {
+    if(!isMobile())
+        return
+    
+        touchDownPos = getTouch(event)
+    time = new Date()
+}
+
+function touchEnd(event) {
+    if(!isMobile() || pause || waitForMove) return
+
+    const deltaTime = new Date() - time
+    // console.log(deltaTime)
+    const touchUpPos = getTouch(event)
+    const swipe = {
+        x: touchUpPos.x - touchDownPos.x,
+        y: touchUpPos.y - touchDownPos.y
+    }
+
+    // console.log(swipe)
+    if(deltaTime <= 200) {
+        waitForMove = true
+
+        if(Math.abs(swipe.x) > Math.abs(swipe.y))
+            if(swipe.x > 0)
+                // console.log('right')
+                moveRight()
+            else
+                // console.log('left')
+                moveLeft()
+        else
+            if(swipe.y > 0)
+                // console.log('down')
+                moveDown()
+            else
+                // console.log('up')
+                moveUp()
+    }
+}
+
+//Function to detect Mobile Browser: https://medium.com/simplejs/detect-the-users-device-type-with-a-simple-javascript-check-4fc656b735e1
+function isMobile() {
+    if(navigator.userAgent.match(/Android/i) ||
+       navigator.userAgent.match(/webOS/i) ||
+       navigator.userAgent.match(/iPhone/i) ||
+       navigator.userAgent.match(/iPad/i) ||
+       navigator.userAgent.match(/iPod/i) ||
+       navigator.userAgent.match(/BlackBerry/i) ||
+       navigator.userAgent.match(/Windows Phone/i))
+        return true
+    
+        return false
+}
