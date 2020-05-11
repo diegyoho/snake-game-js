@@ -13,9 +13,14 @@
 
 ## Indíce
 
+- [Sobre](#sobre)
 - [Tecnologias](#tecnologias)
 - [Checklist](#checklist)
 - [Licença](#licença)
+
+### Sobre
+
+Este é o clássico jogos da cobrinha, mas o principal motivo deste projeto é mostrar como não se programar um jogo! É extremamente fácil notar as falhas que o código possui, mas ressalto que este projeto foi feito muito rápido e justamente com o próposito de demonstrar o resultado de um código sem um planejamento prévio de arquitetura.
 
 ### Tecnologias
 
