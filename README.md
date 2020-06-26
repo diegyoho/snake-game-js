@@ -2,10 +2,10 @@
 
 <div align="center">
 
-<a href="https://www.diegomoreira.net.br/snake-game">![Preview](/previews/preview-1.gif)</a>
+<a href="https://www.diegomoreira.net.br/snake-game-js">![Preview](/previews/preview-1.gif)</a>
 <div>
   
-  Clássico [jogo da cobrinha](https://www.diegomoreira.net.br/snake-game)!
+  Clássico [jogo da cobrinha](https://www.diegomoreira.net.br/snake-game-js)!
 
 </div>
 
